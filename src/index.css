@@ -1,0 +1,542 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
+
+:root {
+  /* AgriConnect Earthy Theme Tokens */
+  --agri-green-900: #1C330E;
+  --agri-green-800: #2D5016; /* Primary Deep Green */
+  --agri-green-700: #3A661D;
+  --agri-green-600: #4A7C2A; /* Secondary Field Green */
+  --agri-green-500: #5F9A37;
+  --agri-green-100: #E2EED9;
+  --agri-green-50:  #F2F7EF;
+
+  --agri-terracotta-800: #9E531B;
+  --agri-terracotta-600: #C77D3B; /* Warm Terracotta */
+  --agri-terracotta-400: #DE9756;
+  --agri-terracotta-100: #FAECE0;
+  --agri-terracotta-50:  #FDF6F0;
+
+  --agri-amber-600: #D8923C;
+  --agri-amber-500: #E8A857; /* Harvest Amber */
+  --agri-amber-400: #F1BF7D;
+  --agri-amber-100: #FCF1E1;
+  --agri-amber-50:  #FEF9F3;
+
+  --agri-cream-bg: #FAF7F0; /* Soft Cream Canvas */
+  --agri-cream-card: #FFFFFF;
+  --agri-cream-card-subtle: #F6F3EC;
+  --agri-cream-border: #E8E2D5;
+  --agri-cream-border-subtle: #EFEBE1;
+
+  --agri-text-primary: #1C2417;
+  --agri-text-secondary: #515C4B;
+  --agri-text-muted: #7E8B76;
+  --agri-text-invert: #FFFFFF;
+
+  /* Status Colors */
+  --status-pending-bg: #FEF3C7;
+  --status-pending-text: #92400E;
+  --status-pending-border: #FCD34D;
+
+  --status-paid-bg: #DCFCE7;
+  --status-paid-text: #166534;
+  --status-paid-border: #86EFAC;
+
+  --status-transit-bg: #E0F2FE;
+  --status-transit-text: #075985;
+  --status-transit-border: #7DD3FC;
+
+  --status-delivered-bg: #D1FAE5;
+  --status-delivered-text: #065F46;
+  --status-delivered-border: #6EE7B7;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(45, 80, 22, 0.05);
+  --shadow-md: 0 6px 18px rgba(45, 80, 22, 0.08);
+  --shadow-lg: 0 12px 32px rgba(45, 80, 22, 0.12);
+  --shadow-amber: 0 8px 24px rgba(199, 125, 59, 0.2);
+  --shadow-green: 0 8px 24px rgba(45, 80, 22, 0.25);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #172112; /* Dark sleek workbench wrapper */
+  color: var(--agri-text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: 'Poppins', 'Inter', sans-serif;
+  letter-spacing: -0.015em;
+}
+
+/* Device Shell Simulator on Desktop */
+.simulator-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding: 24px 16px;
+  background: radial-gradient(circle at 50% 20%, #253818 0%, #111a0c 100%);
+}
+
+.simulator-device {
+  width: 100%;
+  max-width: 440px;
+  height: 920px;
+  max-height: 94vh;
+  background-color: var(--agri-cream-bg);
+  border-radius: 46px;
+  box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.6), 0 0 0 10px #22291d, 0 0 0 12px #35402d;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.simulator-device.fullscreen-mode {
+  max-width: 100%;
+  height: 100vh;
+  max-height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+  border: none;
+}
+
+/* Status Bar */
+.mobile-status-bar {
+  height: 44px;
+  min-height: 44px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1C2417;
+  background: transparent;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.dynamic-island-notch {
+  width: 110px;
+  height: 24px;
+  background: #181f14;
+  border-radius: 20px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.15);
+}
+
+.camera-lens {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #0d120a;
+  border: 1.5px solid #232c1c;
+}
+
+.sensor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #111b0e;
+}
+
+/* App Viewport and Screens */
+.app-screen-viewport {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  background-color: var(--agri-cream-bg);
+}
+
+.screen-scroll-content {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-bottom: 96px; /* space for bottom tab bar */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbars for clean native feel */
+.screen-scroll-content::-webkit-scrollbar,
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.screen-scroll-content,
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Bottom Tab Bar */
+.bottom-tab-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid var(--agri-cream-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 8px 10px 8px;
+  z-index: 40;
+}
+
+.tab-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 4px;
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+  color: var(--agri-text-muted);
+}
+
+.tab-item.active {
+  color: var(--agri-green-800);
+}
+
+.tab-item .tab-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.tab-item.active .tab-icon-wrapper {
+  background-color: var(--agri-green-100);
+  transform: scale(1.08);
+}
+
+.tab-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tab-badge {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  background-color: var(--agri-terracotta-600);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid white;
+}
+
+/* Floating Switcher & Control Panel */
+.simulator-controls {
+  width: 100%;
+  max-width: 440px;
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  z-index: 60;
+}
+
+.role-pill-selector {
+  display: flex;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(16px);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  flex: 1;
+  justify-content: space-between;
+}
+
+.role-pill-btn {
+  background: transparent;
+  border: none;
+  padding: 6px 12px;
+  border-radius: var(--radius-full);
+  color: #D3DCBE;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.role-pill-btn.active {
+  background: #FAF7F0;
+  color: var(--agri-green-900);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Reusable UI Components */
+
+/* Cards */
+.agri-card {
+  background: var(--agri-cream-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--agri-cream-border-subtle);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.agri-card:active {
+  transform: scale(0.99);
+}
+
+/* Earthy Buttons */
+.btn-primary {
+  background: linear-gradient(135deg, var(--agri-green-800) 0%, var(--agri-green-600) 100%);
+  color: #FFFFFF;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow-green);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+  opacity: 0.95;
+}
+
+.btn-secondary {
+  background: var(--agri-cream-card);
+  color: var(--agri-green-800);
+  border: 1.5px solid var(--agri-green-800);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 12px 18px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-terracotta {
+  background: linear-gradient(135deg, var(--agri-terracotta-600) 0%, var(--agri-amber-500) 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: var(--shadow-amber);
+  transition: all 0.2s ease;
+}
+
+/* Status Badge */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.01em;
+}
+
+.status-badge.pending {
+  background-color: var(--status-pending-bg);
+  color: var(--status-pending-text);
+  border: 1px solid var(--status-pending-border);
+}
+
+.status-badge.paid {
+  background-color: var(--status-paid-bg);
+  color: var(--status-paid-text);
+  border: 1px solid var(--status-paid-border);
+}
+
+.status-badge.in_transit,
+.status-badge.transit {
+  background-color: var(--status-transit-bg);
+  color: var(--status-transit-text);
+  border: 1px solid var(--status-transit-border);
+}
+
+.status-badge.delivered {
+  background-color: var(--status-delivered-bg);
+  color: var(--status-delivered-text);
+  border: 1px solid var(--status-delivered-border);
+}
+
+/* Transparent Transaction Receipt Card */
+.receipt-card {
+  background: #FFFFFF;
+  border: 1px solid var(--agri-cream-border);
+  border-radius: 18px;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 4px 16px rgba(45, 80, 22, 0.06);
+}
+
+.receipt-card::before,
+.receipt-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--agri-cream-bg);
+  transform: translateY(-50%);
+  border: 1px solid var(--agri-cream-border);
+}
+
+.receipt-card::before {
+  left: -10px;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.receipt-card::after {
+  right: -10px;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+.receipt-dashed-divider {
+  border-top: 2px dashed var(--agri-cream-border);
+  margin: 16px 0;
+  position: relative;
+}
+
+/* Animated Notification Banner */
+.notification-banner {
+  animation: slideDownToast 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideDownToast {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pulse badge */
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  position: relative;
+}
+
+.pulse-dot::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: 50%;
+  background: inherit;
+  opacity: 0.6;
+  animation: ping 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+/* Responsive adjustment for actual mobile browsers */
+@media (max-width: 500px) {
+  .simulator-container {
+    padding: 0;
+    background: var(--agri-cream-bg);
+  }
+  .simulator-device {
+    max-width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+  .simulator-controls {
+    display: none;
+  }
+  .mobile-status-bar {
+    display: none;
+  }
+}
